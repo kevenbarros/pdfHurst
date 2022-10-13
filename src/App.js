@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import Extract from './extract'
 
+
+function download() {
+  setTimeout(function () {
+    let id = document.getElementById('click')
+    if (id) {
+      id.click()
+    }
+  }, 1000);
+
+  return 'download'
+}
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PDFDownloadLink document={<Extract></Extract>} fileName="extract.pdf">
+        {({ blob, url, loading, error }) => (
+          loading ? <button>preparando</button> : <a id="click">{download()}</a>
+        )}
+      </PDFDownloadLink>
     </div>
   );
 }
