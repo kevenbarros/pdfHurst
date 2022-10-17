@@ -1,7 +1,7 @@
 import React from 'react';
 import { Page, Document, Font, StyleSheet } from '@react-pdf/renderer';
-import Header from './components/Header';
-import Table from './components/Table';
+import Header from './components/Header.tsx';
+import Table from './components/Table.tsx';
 
 const mock = {
   userName: "KEVEN WILLIAM SILVA BARROS",
@@ -18,25 +18,25 @@ const mock = {
     {
       date: "2022-09-19T17:33:07.159Z",
       type: "HCP__TOKENS",
-      name: "Rendimentos de música: Operação [MUSIA022]",
+      description: "Rendimentos de música: Operação [MUSIA022]",
       value: 589.99
     },
     {
       date: "2022-09-19T17:33:07.159Z",
       type: "HCP__ART",
-      name: "Depósito em conta Hurst",
+      description: "Depósito em conta Hurst",
       value: 589.99
     },
     {
       date: "2022-09-19T17:33:07.159Z",
       type: "HCP__MUSIC",
-      name: "Rendimentos de música: Operação [MUSIA022]",
+      description: "Rendimentos de música: Operação [MUSIA022]",
       value: 589.99
     },
     {
       date: "2022-09-19T17:33:07.159Z",
       type: "HCP__BIOTEC",
-      name: "Rendimentos de música: Operação [MUSIA022]",
+      description: "Rendimentos de música: Operação [MUSIA022]",
       value: 589.99
     }
   ]

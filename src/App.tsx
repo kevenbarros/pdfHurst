@@ -1,6 +1,7 @@
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import Extract from './extract'
-
+import Extract from './extract.tsx'
+import { FC } from "react";
+import React from 'react';
 
 function download() {
   setTimeout(function () {
@@ -12,7 +13,7 @@ function download() {
 
   return 'download'
 }
-function App() {
+const App: FC = () => {
   return (
     <div className="App">
       <PDFDownloadLink document={<Extract></Extract>} fileName="extract.pdf">

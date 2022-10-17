@@ -1,8 +1,9 @@
 import React from 'react';
 import { Svg, Path } from '@react-pdf/renderer';
 
+// const Svg: typeof ReactPDF.Svg
 const Tokens = () => (
-  <Svg width="16" height="16" viewBox="0 0 18 18" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+  <Svg width="16" height="16" viewBox="0 0 18 18" fill="#fff">
     <Path d="M5.33179 2.66403L6.3322 3.66445L5.33179 4.66487" stroke="#B5BFC9" stroke-linecap="round" stroke-linejoin="round" />
     <Path d="M6.33222 3.66446H4.99833C3.8933 3.66446 2.9975 4.56026 2.9975 5.66529" stroke="#B5BFC9" stroke-linecap="round" stroke-linejoin="round" />
     <Path d="M12.6682 15.336L11.6678 14.3356L12.6682 13.3351" stroke="#B5BFC9" stroke-linecap="round" stroke-linejoin="round" />
