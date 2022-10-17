@@ -1,8 +1,8 @@
-import { Text, StyleSheet, View } from '@react-pdf/renderer';
-import LogoText from "../svg/LogoText"
-import Arrow from "../svg/Arrow"
+import { Text, StyleSheet, View, Image } from '@react-pdf/renderer';
+import LogoText from "../img/LogoText.png"
 import React, { FC } from 'react';
 import { PDFProps } from '../types/DataProps';
+import Arrow from "../img/Arrow.png";
 
 
 const month = [
@@ -21,6 +21,10 @@ const month = [
 ]
 
 const styles = StyleSheet.create({
+  arrow: {
+    maxWidth: 6,
+    marginRight: 4,
+  },
   header: {
     backgroundColor: "#1C2025",
     paddingHorizontal: 124,
@@ -91,7 +95,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const getFullDate = ({ date }: any) => {
+const getFullDate = (date: any) => {
   const newDt = new Date(date)
   let day = newDt.getDate().toString()
   day = (day.length === 1) ? '0' + day : day;
@@ -113,37 +117,36 @@ const maskMoney = (value: Number) => {
 
 const Header: FC<PDFProps> = ({ data }) => {
   return <View style={styles.header}>
-    <LogoText></LogoText>
+    <Image src={LogoText} style={styles.logo}></Image>
     <Text style={styles.titleWithe}>
       Este é o seu balanço geral na Hurst Wallet:
     </Text>
-
     <View style={styles.extractMovimentsBox}>
       <Text style={styles.titleDate}>{`${getDayMonth(data.initialExtractDate)} A ${getFullDate(data.endExtractDate)}`}</Text>
       <View style={styles.extractMoviments}>
         <View style={styles.movimentsContainerTitles}>
-          <Arrow></Arrow>
+          <Image src={Arrow} style={styles.arrow}></Image>
           <Text style={styles.movimentsTitles}>Entradas</Text>
         </View>
         <Text style={styles.movimentsValue}>+ R${maskMoney(data.walletEntries)}</Text>
       </View>
       <View style={styles.extractMoviments}>
         <View style={styles.movimentsContainerTitles}>
-          <Arrow></Arrow>
+          <Image src={Arrow} style={styles.arrow}></Image>
           <Text style={styles.movimentsTitles}>Saídas</Text>
         </View>
         <Text style={styles.movimentsValue}>- R${maskMoney(data.walletOutputs)}</Text>
       </View>
       <View style={styles.extractMoviments}>
         <View style={styles.movimentsContainerTitles}>
-          <Arrow></Arrow>
+          <Image src={Arrow} style={styles.arrow}></Image>
           <Text style={styles.movimentsTitles}>Totais</Text>
         </View>
         <Text style={styles.movimentsValue}>+ R${maskMoney(data.walletTotals)}</Text>
       </View>
       <View style={styles.extractMoviments}>
         <View style={styles.movimentsContainerTitles}>
-          <Arrow></Arrow>
+          <Image src={Arrow} style={styles.arrow}></Image>
           <Text style={styles.movimentsTitles}>Movimentações</Text>
         </View>
         <Text style={styles.movimentsValue}>+ R${maskMoney(data.walletMovements)}</Text>

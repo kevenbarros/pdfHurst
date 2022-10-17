@@ -1,8 +1,43 @@
-import { Text, StyleSheet, View } from '@react-pdf/renderer';
-import Logo from "../svg/Logo"
-// import { typeImg, getDayMonth, getFullDate } from "../helpers/common"
+import { Text, StyleSheet, View, Image } from '@react-pdf/renderer';
+import Logo from "../img/Logo.png"
 import React, { FC } from 'react';
 import { PDFProps } from '../types/DataProps';
+
+import Biotec from "../img/BioTec.png";
+import Cripto from "../img/Cript.png";
+import Debit from "../img/Debit.png";
+import Judicial from "../img/Legal.png";
+import Music from "../img/Music.png";
+import RealEstate from "../img/RealEstate.png";
+import Rescue from "../img/Rescue.png";
+
+enum IconTypes {
+  HCP__BIOTEC = "HCP__BIOTEC",
+  HCP__MUSIC = "HCP__MUSIC",
+  HCP__REALESTATE = "HCP__REALESTATE",
+  HCP__JUDICIAL = "HCP__JUDICIAL",
+  HCP__RESCUE = "HCP__RESCUE",
+  HCP__CRIPTO = "HCP__CRIPTO",
+}
+
+const typeImg = (type: string) => {
+  switch (type) {
+    case IconTypes.HCP__BIOTEC:
+      return Biotec;
+    case IconTypes.HCP__CRIPTO:
+      return Music;
+    case IconTypes.HCP__JUDICIAL:
+      return RealEstate;
+    case IconTypes.HCP__MUSIC:
+      return Judicial;
+    case IconTypes.HCP__REALESTATE:
+      return Rescue;
+    case IconTypes.HCP__RESCUE:
+      return Cripto;
+    default:
+      return Debit;
+  }
+};
 
 const month = [
   "JAN",
@@ -20,6 +55,13 @@ const month = [
 ]
 
 const styles = StyleSheet.create({
+  img: {
+    maxWidth: 25,
+  },
+  logo: {
+    width: 24,
+    height: 24,
+  },
   container: {
     backgroundColor: "#F7F7F7",
     paddingHorizontal: 32,
@@ -135,7 +177,7 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: 16,
     alignSelf: "flex-start",
-    paddingTop: 2,
+    paddingTop: 2.5,
     fontFamily: "Nunito",
   },
   itemValue: {
@@ -160,12 +202,17 @@ const styles = StyleSheet.create({
 
 })
 
-const getFullDate = ({ date }: any) => {
-  const newDt = new Date(date)
+const getFullDate = (props: any) => {
+  const newDt = new Date(props)
   let day = newDt.getDate().toString()
   day = (day.length === 1) ? '0' + day : day;
   const aux = `${day} ${month[newDt.getMonth()]} DE ${newDt.getFullYear()}`
   return aux
+}
+
+export const getYear = (date: any) => {
+  const newDt = new Date(date)
+  return newDt.getFullYear()
 }
 
 const getDayMonth = (date: any) => {
@@ -181,9 +228,10 @@ const maskMoney = (value: Number) => {
 }
 
 const Table: FC<PDFProps> = ({ data }) => {
+  console.log(data)
   return <View style={styles.container}>
     <View style={styles.bodyHeader}>
-      <Logo></Logo>
+      <Image src={Logo} style={styles.logo}></Image>
       <View style={styles.headerInformations}>
         <Text style={styles.headerInformationsName}>{data.userName}</Text>
         <View style={styles.headerInformationsPdf}>
@@ -216,7 +264,7 @@ const Table: FC<PDFProps> = ({ data }) => {
             <View style={styles.dateContainer}>
               <Text style={styles.itemValue}>{getDayMonth(elemento.date)}</Text>
               <View style={styles.typeLogo}>
-                {typeImg(elemento.type)}
+                <Image src={typeImg(elemento.type)} style={styles.img}></Image>
               </View>
             </View>
             <Text style={styles.itemMovements}>{elemento.description}</Text>
