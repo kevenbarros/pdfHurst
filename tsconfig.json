@@ -16,6 +16,6 @@
     "strict": true /* Enable all strict type-checking options. */,
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.png"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.png", "src/svg/Arrow.tsx", "src/svg/Arrow.tsx"],
   "exclude": ["node_modules"]
 }

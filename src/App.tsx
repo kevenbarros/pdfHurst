@@ -1,5 +1,5 @@
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import Extract from './extract.tsx'
+import Extract from './extract'
 import { FC } from "react";
 import React from 'react';
 

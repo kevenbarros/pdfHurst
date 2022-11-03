@@ -1,15 +1,16 @@
-import { Text, StyleSheet, View, Image } from '@react-pdf/renderer';
-import Logo from "../img/Logo.png"
-import React, { FC } from 'react';
+import { Text, StyleSheet, View } from '@react-pdf/renderer';
+import Logo from "../svg/Logo"
+import { FC } from 'react';
 import { PDFProps } from '../types/DataProps';
 
-import Biotec from "../img/BioTec.png";
-import Cripto from "../img/Cript.png";
-import Debit from "../img/Debit.png";
-import Judicial from "../img/Legal.png";
-import Music from "../img/Music.png";
-import RealEstate from "../img/RealEstate.png";
-import Rescue from "../img/Rescue.png";
+import Biotec from '../svg/Biotec';
+import Cripto from "../svg/Cripto"
+import RealEstate from "../svg/RealEstate";
+import SvgCustom from './SvgCustom';
+import Music from '../svg/Music';
+import Judicial from '../svg/Judicial';
+import Rescue from '../svg/Rescue';
+import Debit from '../svg/Debit';
 
 enum IconTypes {
   HCP__BIOTEC = "HCP__BIOTEC",
@@ -20,22 +21,29 @@ enum IconTypes {
   HCP__CRIPTO = "HCP__CRIPTO",
 }
 
-const typeImg = (type: string) => {
-  switch (type) {
+const typeImg = (item: any) => {
+  if (!item.category) {
+    if (item.type === 'C') {
+      return <Rescue color='#DC2626' />;
+    }
+    return <Debit color='#0E9C55' />;
+  }
+
+  switch (item.category) {
     case IconTypes.HCP__BIOTEC:
-      return Biotec;
+      return <Biotec />;
     case IconTypes.HCP__CRIPTO:
-      return Music;
+      return <Music />;
     case IconTypes.HCP__JUDICIAL:
-      return RealEstate;
+      return <RealEstate />;
     case IconTypes.HCP__MUSIC:
-      return Judicial;
+      return <Judicial />;
     case IconTypes.HCP__REALESTATE:
-      return Rescue;
+      return <Rescue color='#DC2626' />;
     case IconTypes.HCP__RESCUE:
-      return Cripto;
+      return <Cripto />;
     default:
-      return Debit;
+      return <Debit color='#0E9C55' />;
   }
 };
 
@@ -65,11 +73,12 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#F7F7F7",
     paddingHorizontal: 32,
-    paddingVertical: 24,
+    paddingBottom: 24,
     display: "flex",
     flexDirection: "column",
   },
   bodyHeader: {
+    marginTop: 20,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -109,11 +118,11 @@ const styles = StyleSheet.create({
     fontWeight: 400
   },
   table: {
-    marginTop: 32,
     display: "flex",
     flexDirection: "column"
   },
   tableHeader: {
+    marginTop: 10,
     paddingVertical: 6,
     display: "flex",
     flexDirection: "column",
@@ -167,8 +176,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginVertical: 11,
-    paddingRight: 6
+    paddingVertical: 11,
+    paddingRight: 10,
+    paddingLeft: 4,
   },
   itemMovements: {
     fontSize: 10,
@@ -230,8 +240,8 @@ const maskMoney = (value: Number) => {
 const Table: FC<PDFProps> = ({ data }) => {
   console.log(data)
   return <View style={styles.container}>
-    <View style={styles.bodyHeader}>
-      <Image src={Logo} style={styles.logo}></Image>
+    <View style={styles.bodyHeader} fixed>
+      <SvgCustom height={24} width={64} viewBox='0 0 60 24'><Logo /></SvgCustom>
       <View style={styles.headerInformations}>
         <Text style={styles.headerInformationsName}>{data.userName}</Text>
         <View style={styles.headerInformationsPdf}>
@@ -247,7 +257,7 @@ const Table: FC<PDFProps> = ({ data }) => {
       </View>
     </View>
     <View style={styles.table}>
-      <View style={styles.tableHeader}>
+      <View style={styles.tableHeader} fixed>
         <View style={styles.titlesContainer}>
           <Text style={styles.titles}>{`${getDayMonth(data.initialExtractDate)} A ${getFullDate(data.endExtractDate)}`}</Text>
           <Text style={styles.titlesImportant}>Movimentações</Text>
@@ -260,15 +270,15 @@ const Table: FC<PDFProps> = ({ data }) => {
       </View>
       <View style={styles.tableBody}>
         {data.movements.map((elemento, index) => {
-          return <View style={styles.itemContainer} key={index}>
+          return <View style={{ ...styles.itemContainer, backgroundColor: index % 2 === 0 ? '#EEF1F2' : "#fff" }} key={index}>
             <View style={styles.dateContainer}>
               <Text style={styles.itemValue}>{getDayMonth(elemento.date)}</Text>
               <View style={styles.typeLogo}>
-                <Image src={typeImg(elemento.type)} style={styles.img}></Image>
+                <SvgCustom height={14} width={14}>{typeImg(elemento)}</SvgCustom>
               </View>
             </View>
             <Text style={styles.itemMovements}>{elemento.description}</Text>
-            <Text style={styles.itemValue}>R$ {maskMoney(elemento.value)}</Text>
+            <Text style={{ ...styles.itemValue, color: elemento.type === 'C' ? '#00A04A' : '#B24425' }}>R$ {maskMoney(elemento.value)}</Text>
           </View>
         })}
       </View>

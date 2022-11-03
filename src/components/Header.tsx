@@ -1,9 +1,9 @@
 import { Text, StyleSheet, View, Image } from '@react-pdf/renderer';
-import LogoText from "../img/LogoText.png"
-import React, { FC } from 'react';
+import LogoText from '../svg/LogoText';
+import { FC } from 'react';
 import { PDFProps } from '../types/DataProps';
-import Arrow from "../img/Arrow.png";
-
+import Arrow from '../svg/Arrow';
+import SvgCustom from './SvgCustom';
 
 const month = [
   "JAN",
@@ -117,7 +117,7 @@ const maskMoney = (value: Number) => {
 
 const Header: FC<PDFProps> = ({ data }) => {
   return <View style={styles.header}>
-    <Image src={LogoText} style={styles.logo}></Image>
+    <SvgCustom width={60} height={16} viewBox="0 0 60 16"><LogoText /></SvgCustom>
     <Text style={styles.titleWithe}>
       Este é o seu balanço geral na Hurst Wallet:
     </Text>
@@ -125,33 +125,33 @@ const Header: FC<PDFProps> = ({ data }) => {
       <Text style={styles.titleDate}>{`${getDayMonth(data.initialExtractDate)} A ${getFullDate(data.endExtractDate)}`}</Text>
       <View style={styles.extractMoviments}>
         <View style={styles.movimentsContainerTitles}>
-          <Image src={Arrow} style={styles.arrow}></Image>
+          <SvgCustom width={14} height={14}><Arrow /></SvgCustom>
           <Text style={styles.movimentsTitles}>Entradas</Text>
         </View>
         <Text style={styles.movimentsValue}>+ R${maskMoney(data.walletEntries)}</Text>
       </View>
       <View style={styles.extractMoviments}>
         <View style={styles.movimentsContainerTitles}>
-          <Image src={Arrow} style={styles.arrow}></Image>
+          <SvgCustom width={14} height={14}><Arrow /></SvgCustom>
           <Text style={styles.movimentsTitles}>Saídas</Text>
         </View>
         <Text style={styles.movimentsValue}>- R${maskMoney(data.walletOutputs)}</Text>
       </View>
       <View style={styles.extractMoviments}>
         <View style={styles.movimentsContainerTitles}>
-          <Image src={Arrow} style={styles.arrow}></Image>
+          <SvgCustom width={14} height={14}><Arrow /></SvgCustom>
           <Text style={styles.movimentsTitles}>Totais</Text>
         </View>
         <Text style={styles.movimentsValue}>+ R${maskMoney(data.walletTotals)}</Text>
       </View>
       <View style={styles.extractMoviments}>
         <View style={styles.movimentsContainerTitles}>
-          <Image src={Arrow} style={styles.arrow}></Image>
+          <SvgCustom width={14} height={14}><Arrow /></SvgCustom>
           <Text style={styles.movimentsTitles}>Movimentações</Text>
         </View>
         <Text style={styles.movimentsValue}>+ R${maskMoney(data.walletMovements)}</Text>
       </View>
     </View>
-  </View>
+  </View >
 }
 export default Header;
