@@ -1,65 +1,70 @@
-import { Text, StyleSheet, View } from '@react-pdf/renderer';
-import Logo from "../svg/Logo"
-import { FC } from 'react';
+import { Text, StyleSheet, View, Image } from '@react-pdf/renderer';
+import Logo from '../img/Logo.png'
+import React, { FC } from 'react';
 import { PDFProps } from '../types/DataProps';
 
-import Biotec from '../svg/Biotec';
-import Cripto from "../svg/Cripto"
-import RealEstate from "../svg/RealEstate";
-import SvgCustom from './SvgCustom';
-import Music from '../svg/Music';
-import Judicial from '../svg/Judicial';
-import Rescue from '../svg/Rescue';
-import Debit from '../svg/Debit';
+import Biotec from '../img/BioTec.png';
+import Cripto from '../img/Cript.png';
+import Debit from '../img/Debit.png';
+import Credit from '../img/Credit.png';
+import Judicial from '../img/Legal.png';
+import Exchange from '../img/Tokens.png';
+import Music from '../img/Music.png';
+import RealEstate from '../img/RealEstate.png';
+import Rescue from '../img/Rescue.png';
 
 enum IconTypes {
-  HCP__BIOTEC = "HCP__BIOTEC",
-  HCP__MUSIC = "HCP__MUSIC",
-  HCP__REALESTATE = "HCP__REALESTATE",
-  HCP__JUDICIAL = "HCP__JUDICIAL",
-  HCP__RESCUE = "HCP__RESCUE",
-  HCP__CRIPTO = "HCP__CRIPTO",
+  HCP__BIOTEC = 'HCP__BIOTEC',
+  HCP__MUSIC = 'HCP__MUSIC',
+  HCP__REALESTATE = 'HCP__REALESTATE',
+  HCP__JUDICIAL = 'HCP__JUDICIAL',
+  HCP__RESCUE = 'HCP__RESCUE',
+  HCP__CRIPTO = 'HCP__CRIPTO',
+  HCP__EXCHANGE = 'HCP__EXCHANGE',
 }
 
 const typeImg = (item: any) => {
   if (!item.category) {
     if (item.type === 'C') {
-      return <Rescue color='#DC2626' />;
+      return Credit;
     }
-    return <Debit color='#0E9C55' />;
+
+    return Debit;
   }
 
   switch (item.category) {
     case IconTypes.HCP__BIOTEC:
-      return <Biotec />;
+      return Biotec;
     case IconTypes.HCP__CRIPTO:
-      return <Music />;
+      return Music;
     case IconTypes.HCP__JUDICIAL:
-      return <RealEstate />;
+      return RealEstate;
     case IconTypes.HCP__MUSIC:
-      return <Judicial />;
+      return Judicial;
     case IconTypes.HCP__REALESTATE:
-      return <Rescue color='#DC2626' />;
+      return Rescue;
+    case IconTypes.HCP__EXCHANGE:
+      return Exchange;
     case IconTypes.HCP__RESCUE:
-      return <Cripto />;
+      return Cripto;
     default:
-      return <Debit color='#0E9C55' />;
+      return Debit;
   }
 };
 
 const month = [
-  "JAN",
-  "FEV",
-  "MAR",
-  "ABR",
-  "MAI",
-  "JUN",
-  "JUL",
-  "AGO",
-  "SET",
-  "OUT",
-  "NOV",
-  "DEZ"
+  'JAN',
+  'FEV',
+  'MAR',
+  'ABR',
+  'MAI',
+  'JUN',
+  'JUL',
+  'AGO',
+  'SET',
+  'OUT',
+  'NOV',
+  'DEZ'
 ]
 
 const styles = StyleSheet.create({
@@ -71,7 +76,7 @@ const styles = StyleSheet.create({
     height: 24,
   },
   container: {
-    backgroundColor: "#F7F7F7",
+    backgroundColor: '#F7F7F7',
     paddingHorizontal: 32,
     paddingBottom: 24,
     display: "flex",
@@ -79,6 +84,7 @@ const styles = StyleSheet.create({
   },
   bodyHeader: {
     marginTop: 20,
+    marginBottom: 10,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -90,86 +96,86 @@ const styles = StyleSheet.create({
     height: 24,
   },
   headerInformations: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-end"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end'
   },
   headerInformationsName: {
     fontSize: 8,
-    color: "#2E343A",
+    color: '#2E343A',
     fontWeight: 700,
-    fontFamily: "Nunito",
+    fontFamily: 'Nunito',
   },
   headerInformationsPdf: {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
     marginTop: 8,
   },
   headerInformationsEmission: {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
     marginLeft: 8,
   },
   headerInformationsEmissionValue: {
-    color: "#7F8C9A",
+    color: '#7F8C9A',
     fontSize: 8,
     marginLeft: 4,
-    fontFamily: "Nunito",
+    fontFamily: 'Nunito',
     fontWeight: 400
   },
   table: {
-    display: "flex",
-    flexDirection: "column"
+    display: 'flex',
+    flexDirection: 'column'
   },
   tableHeader: {
     marginTop: 10,
     paddingVertical: 6,
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
 
   },
   titlesContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    borderBottom: "1px solid #D3D8DF",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottom: '1px solid #D3D8DF',
     marginBottom: 16,
     paddingBottom: 8,
   },
   titles: {
     fontSize: 8,
-    color: "#667382",
-    fontFamily: "Nunito",
+    color: '#667382',
+    fontFamily: 'Nunito',
     fontWeight: 400
   },
   titlesImportant: {
     fontSize: 12,
-    color: "#232930",
+    color: '#232930',
     fontWeight: 700,
-    display: "flex",
-    justifyContent: "center",
+    display: 'flex',
+    justifyContent: 'center',
     paddingRight: 50,
-    fontFamily: "Nunito",
+    fontFamily: 'Nunito',
 
   },
   balance: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-end"
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
   },
   balanceTitle: {
     fontSize: 8,
     fontWeight: 700,
-    color: "#2E343A",
-    fontFamily: "Nunito",
+    color: '#2E343A',
+    fontFamily: 'Nunito',
   },
   balanceValue: {
     fontSize: 8,
     fontWeight: 700,
     marginLeft: 4,
-    color: "#7F8C9A",
-    fontFamily: "Nunito",
+    color: '#7F8C9A',
+    fontFamily: 'Nunito',
   },
   itemContainer: {
     display: "flex",
@@ -183,31 +189,31 @@ const styles = StyleSheet.create({
   itemMovements: {
     fontSize: 10,
     fontWeight: 800,
-    color: "#2E343A",
-    width: "100%",
+    color: '#2E343A',
+    width: '100%',
     paddingHorizontal: 16,
-    alignSelf: "flex-start",
+    alignSelf: 'flex-start',
     paddingTop: 2.5,
-    fontFamily: "Nunito",
+    fontFamily: 'Nunito',
   },
   itemValue: {
     fontSize: 8,
     fontWeight: 700,
-    color: "#2E343A",
-    fontFamily: "Nunito",
+    color: '#2E343A',
+    fontFamily: 'Nunito',
   },
 
   dateContainer: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   typeLogo: {
     marginLeft: 15
   },
   tableBody: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
   }
 
 })
@@ -233,7 +239,7 @@ const getDayMonth = (date: any) => {
   return aux
 }
 
-const maskMoney = (value: Number) => {
+const maskMoney = (value: number) => {
   return value.toLocaleString('pt-br', { minimumFractionDigits: 2 });
 }
 
@@ -241,7 +247,7 @@ const Table: FC<PDFProps> = ({ data }) => {
   console.log(data)
   return <View style={styles.container}>
     <View style={styles.bodyHeader} fixed>
-      <SvgCustom height={24} width={64} viewBox='0 0 60 24'><Logo /></SvgCustom>
+      <Image src={Logo} style={styles.logo}></Image>
       <View style={styles.headerInformations}>
         <Text style={styles.headerInformationsName}>{data.userName}</Text>
         <View style={styles.headerInformationsPdf}>
@@ -274,7 +280,7 @@ const Table: FC<PDFProps> = ({ data }) => {
             <View style={styles.dateContainer}>
               <Text style={styles.itemValue}>{getDayMonth(elemento.date)}</Text>
               <View style={styles.typeLogo}>
-                <SvgCustom height={14} width={14}>{typeImg(elemento)}</SvgCustom>
+                <Image src={typeImg(elemento)} style={styles.img}></Image>
               </View>
             </View>
             <Text style={styles.itemMovements}>{elemento.description}</Text>

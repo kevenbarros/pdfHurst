@@ -1,23 +1,23 @@
 import { Text, StyleSheet, View, Image } from '@react-pdf/renderer';
-import LogoText from '../svg/LogoText';
-import { FC } from 'react';
+import LogoText from '../img/LogoText.png'
+import React, { FC } from 'react';
 import { PDFProps } from '../types/DataProps';
-import Arrow from '../svg/Arrow';
-import SvgCustom from './SvgCustom';
+import Arrow from '../img/Arrow.png';
+
 
 const month = [
-  "JAN",
-  "FEV",
-  "MAR",
-  "ABR",
-  "MAI",
-  "JUN",
-  "JUL",
-  "AGO",
-  "SET",
-  "OUT",
-  "NOV",
-  "DEZ"
+  'JAN',
+  'FEV',
+  'MAR',
+  'ABR',
+  'MAI',
+  'JUN',
+  'JUL',
+  'AGO',
+  'SET',
+  'OUT',
+  'NOV',
+  'DEZ'
 ]
 
 const styles = StyleSheet.create({
@@ -26,12 +26,12 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   header: {
-    backgroundColor: "#1C2025",
+    backgroundColor: '#1C2025',
     paddingHorizontal: 124,
     paddingVertical: 32,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   logo: {
     width: 60,
@@ -40,54 +40,54 @@ const styles = StyleSheet.create({
   titleWithe: {
     marginTop: 10,
     fontSize: 22,
-    color: "#EEF1F2",
+    color: '#EEF1F2',
     letterSpacing: 0.64,
-    fontFamily: "Nunito",
+    fontFamily: 'Nunito',
     fontWeight: 600,
   },
   titleGold: {
     marginTop: 8,
     fontWeight: 400,
     fontSize: 24,
-    color: "#FACA50",
+    color: '#FACA50',
     letterSpacing: 0.64,
-    fontFamily: "Nunito",
+    fontFamily: 'Nunito',
   },
   extractMovimentsBox: {
     marginTop: 32,
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     width: 150,
   },
   extractMoviments: {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
     marginTop: 4,
-    alignItems: "center",
-    justifyContent: "space-between"
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   movimentsContainerTitles: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center"
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   movimentsTitles: {
     fontSize: 8,
-    color: "#7F8C9A",
+    color: '#7F8C9A',
     fontWeight: 400,
-    fontFamily: "Open Sans"
+    fontFamily: 'Open Sans'
   },
   movimentsValue: {
     fontSize: 8,
-    color: "#B5BFC9",
+    color: '#B5BFC9',
     fontWeight: 400,
-    fontFamily: "Open Sans"
+    fontFamily: 'Open Sans'
   },
   titleDate: {
-    color: "#B5BFC9",
+    color: '#B5BFC9',
     fontSize: 8,
     fontWeight: 400,
-    fontFamily: "Open Sans"
+    fontFamily: 'Open Sans'
   },
   imageArrow: {
     width: 14,
@@ -111,13 +111,13 @@ const getDayMonth = (date: any) => {
   return aux
 }
 
-const maskMoney = (value: Number) => {
+const maskMoney = (value: number) => {
   return value.toLocaleString('pt-br', { minimumFractionDigits: 2 });
 }
 
 const Header: FC<PDFProps> = ({ data }) => {
   return <View style={styles.header}>
-    <SvgCustom width={60} height={16} viewBox="0 0 60 16"><LogoText /></SvgCustom>
+    <Image src={LogoText} style={styles.logo}></Image>
     <Text style={styles.titleWithe}>
       Este é o seu balanço geral na Hurst Wallet:
     </Text>
@@ -125,33 +125,33 @@ const Header: FC<PDFProps> = ({ data }) => {
       <Text style={styles.titleDate}>{`${getDayMonth(data.initialExtractDate)} A ${getFullDate(data.endExtractDate)}`}</Text>
       <View style={styles.extractMoviments}>
         <View style={styles.movimentsContainerTitles}>
-          <SvgCustom width={14} height={14}><Arrow /></SvgCustom>
+          <Image src={Arrow} style={styles.arrow}></Image>
           <Text style={styles.movimentsTitles}>Entradas</Text>
         </View>
         <Text style={styles.movimentsValue}>+ R${maskMoney(data.walletEntries)}</Text>
       </View>
       <View style={styles.extractMoviments}>
         <View style={styles.movimentsContainerTitles}>
-          <SvgCustom width={14} height={14}><Arrow /></SvgCustom>
+          <Image src={Arrow} style={styles.arrow}></Image>
           <Text style={styles.movimentsTitles}>Saídas</Text>
         </View>
         <Text style={styles.movimentsValue}>- R${maskMoney(data.walletOutputs)}</Text>
       </View>
       <View style={styles.extractMoviments}>
         <View style={styles.movimentsContainerTitles}>
-          <SvgCustom width={14} height={14}><Arrow /></SvgCustom>
-          <Text style={styles.movimentsTitles}>Totais</Text>
+          <Image src={Arrow} style={styles.arrow}></Image>
+          <Text style={styles.movimentsTitles}>Balanço</Text>
         </View>
         <Text style={styles.movimentsValue}>+ R${maskMoney(data.walletTotals)}</Text>
       </View>
       <View style={styles.extractMoviments}>
         <View style={styles.movimentsContainerTitles}>
-          <SvgCustom width={14} height={14}><Arrow /></SvgCustom>
+          <Image src={Arrow} style={styles.arrow}></Image>
           <Text style={styles.movimentsTitles}>Movimentações</Text>
         </View>
         <Text style={styles.movimentsValue}>+ R${maskMoney(data.walletMovements)}</Text>
       </View>
     </View>
-  </View >
+  </View>
 }
 export default Header;

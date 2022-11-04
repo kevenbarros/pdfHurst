@@ -2,6 +2,260 @@ import { Page, Document, Font, StyleSheet } from '@react-pdf/renderer';
 import Header from './components/Header';
 import Table from './components/Table';
 
+const mock = {
+  userName: "KEVEN WILLIAM SILVA BARROS",
+  issueDate: "2022-09-29T17:33:07.159Z",
+  initialExtractDate: "2022-09-19T17:33:07.159Z",
+  endExtractDate: "2022-09-29T17:33:07.159Z",
+  walletBalance: 102408.32,
+  walletEntries: 10006.66,
+  walletOutputs: 7598.34,
+  walletTotals: 2408.32,
+  walletMovements: 17604.00,
+  balancePeriodical: 1354.33,
+  movements: [
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'C',
+      category: "HCP__TOKENS",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__ART",
+      description: "Depósito em conta Hurst",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'C',
+      category: "HCP__MUSIC",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__BIOTEC",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'C',
+      category: "HCP__RESCUE",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__REALESTATE",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'C',
+      category: "HCP__MUSIC",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__JUDICIAL",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'C',
+      category: "HCP__DEBIT",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__BIOTEC",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'C',
+      category: "HCP__BIOTEC",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'C',
+      category: "HCP__BIOTEC",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__BIOTEC",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'C',
+      category: "HCP__BIOTEC",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'C',
+      category: "HCP__BIOTEC",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'C',
+      category: "HCP__BIOTEC",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'C',
+      category: "HCP__BIOTEC",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'C',
+      category: "HCP__BIOTEC",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'C',
+      category: "HCP__BIOTEC",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'C',
+      category: "HCP__BIOTEC",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+    {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    }, {
+      date: "2022-09-19T17:33:07.159Z",
+      type: 'D',
+      category: "HCP__CRIPTO",
+      description: "Rendimentos de música: Operação [MUSIA022]",
+      value: 589.99
+    },
+  ]
+}
 
 Font.register({
   family: "Nunito",
@@ -57,8 +311,8 @@ const Extract = () => {
   return (
     <Document >
       <Page style={styles.background} wrap>
-        <Header data={ }></Header>
-        <Table data={ } />
+        <Header data={mock}></Header>
+        <Table data={mock} />
       </Page>
     </Document >
   )

@@ -1,8 +1,8 @@
 export type TemplateData = {
   userName: string,
-  issueDate: Date,
-  initialExtractDate: Date,
-  endExtractDate: Date,
+  issueDate: string,
+  initialExtractDate: string,
+  endExtractDate: string,
   walletEntries: number,
   walletOutputs: number,
   walletTotals: number,
@@ -12,7 +12,7 @@ export type TemplateData = {
 }
 interface IMovements {
 
-  date: Date,
+  date: string,
 
   type: string,
 
